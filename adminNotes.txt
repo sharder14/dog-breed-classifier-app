@@ -1,0 +1,16 @@
+###########################################
+
+#Notes for development/deployment
+
+1. Ran code on google Colab to develop model with GPU in ipynb
+
+2. Develop app locally with flask
+
+3. mkvirtualenv dogApp and use that
+   or use env within the project which might be better
+
+4. pip install -r requirements.txt,,, which were from before
+
+5. Zip only important files then upload to elasticbeanstalk!
+
+6. 
