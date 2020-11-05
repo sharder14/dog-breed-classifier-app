@@ -3,9 +3,26 @@ import pandas as pd
 import numpy as np
 from utils import DogBreedClassifier
 from PIL import Image,ImageFile
+import os
+import boto3
+
 
 application = Flask(__name__, static_folder='static')
+
+s3 = boto3.client('s3',
+aws_access_key_id=os.environ['AWS_ACCESS_KEY'],
+aws_secret_access_key=os.environ['AWS_SECRET_KEY']
+)
+
+if(os.path.isfile('LabelID_DF.pickle')==False):
+    s3.download_file('sh-apps-bucket', 'dogApp/LabelID_DF.pickle', 'LabelID_DF.pickle')
+if(os.path.isfile('model_transfer_CPU.pickle')==False):
+    s3.download_file('sh-apps-bucket', 'dogApp/model_transfer_CPU.pickle', 'model_transfer_CPU.pickle')
+
+
+
 dogCLF=DogBreedClassifier()
+
 
 @application.route('/', methods=['GET','POST'])
 def homepage(): 

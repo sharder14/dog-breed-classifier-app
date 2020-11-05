@@ -28,11 +28,12 @@ import boto3
 class DogBreedClassifier():
 
     def __init__(self):
+        '''
         s3 = boto3.resource('s3',
             aws_access_key_id=os.environ['AWS_ACCESS_KEY'],
             aws_secret_access_key=os.environ['AWS_SECRET_KEY']
         )
-        
+        '''
         #self.model_transfer=pickle.load(open('model_transfer.pickle','rb'))
         #self.model_transfer.load_state_dict(torch.load('model_transfer.pt',map_location='cpu'))
         #self.model_transfer = pickle.loads(s3.Bucket("sh-apps-bucket").Object("dogApp/model_transfer_CPU.pickle").get()['Body'].read())
