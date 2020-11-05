@@ -35,9 +35,11 @@ class DogBreedClassifier():
         
         #self.model_transfer=pickle.load(open('model_transfer.pickle','rb'))
         #self.model_transfer.load_state_dict(torch.load('model_transfer.pt',map_location='cpu'))
-        self.model_transfer = pickle.loads(s3.Bucket("sh-apps-bucket").Object("dogApp/model_transfer_CPU.pickle").get()['Body'].read())
-        self.labelID_DF = pickle.loads(s3.Bucket("sh-apps-bucket").Object("dogApp/LabelID_DF.pickle").get()['Body'].read())
-        
+        #self.model_transfer = pickle.loads(s3.Bucket("sh-apps-bucket").Object("dogApp/model_transfer_CPU.pickle").get()['Body'].read())
+        #self.labelID_DF = pickle.loads(s3.Bucket("sh-apps-bucket").Object("dogApp/LabelID_DF.pickle").get()['Body'].read())
+        self.model_transfer=pickle.load(open('model_transfer_CPU.pickle','rb'))
+        self.labelID_DF=pickle.load(open('LabelID_DF.pickle','rb'))
+
         
         self.model_transfer.eval()
         #self.model_transfer.cpu()

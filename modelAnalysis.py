@@ -140,6 +140,23 @@ aws_secret_access_key=os.environ['AWS_SECRET_KEY']
 
 s3=boto3.resource('s3',verify=False)
 
+#Try downloading it
+#s3 = boto3.client('s3')
+s3 = boto3.client('s3',
+aws_access_key_id=os.environ['AWS_ACCESS_KEY'],
+aws_secret_access_key=os.environ['AWS_SECRET_KEY']
+)
+s3.download_file('sh-apps-bucket', 'dogApp/model_transfer_CPU.pickle', 'model_transfer_CPU.pickle')
+s3.download_file('sh-apps-bucket', 'dogApp/LabelID_DF.pickle', 'LabelID_DF.pickle')
+
+model_transfer=pickle.load(open('model_transfer_CPU.pickle','rb'))
+model_transfer
+labelID_DF=pickle.load(open('LabelID_DF.pickle','rb'))
+labelID_DF
+
+
+
+
 model_transfer = pickle.loads(s3.Bucket("sh-apps-bucket").Object("dogApp/model_transfer_CPU.pickle").get()['Body'].read())
 model_transfer
 
